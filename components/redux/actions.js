@@ -6,6 +6,7 @@ export const FETCH_FIRST_MED = 'FETCH_FIRST_MED';
 export const FETCH_MEDS_FAILURE = 'FETCH_MEDS_FAILURE';
 export const SORT_MEDS = 'SORT_MEDS';
 export const FILTER_MEDS = 'FILTER_MEDS';
+export const SHOW_ERROR = 'SHOW_ERROR';
 
 const url = 'http://localhost:8000/';
 
@@ -42,3 +43,5 @@ export function fetchFirstMed(med) {
 export const sortMeds = () => ({type: SORT_MEDS});
 
 export const filterMeds = () => ({type: FILTER_MEDS});
+
+export const showError = (err) => ({type: SHOW_ERROR, error: err.message});

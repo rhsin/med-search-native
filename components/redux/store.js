@@ -7,7 +7,8 @@ import {
     FETCH_FIRST_MED,
     FETCH_MEDS_FAILURE,
     SORT_MEDS,
-    FILTER_MEDS
+    FILTER_MEDS,
+    SHOW_ERROR
 } from './actions';
 
 export const initialState = {
@@ -53,6 +54,11 @@ export function reducer(state = initialState, action) {
             return { 
                 ...state,
                 meds: state.meds.slice().filter(item => item.price < 200)
+            };
+        case SHOW_ERROR:
+            return {
+                ...state,
+                error: action.error
             };
         default:
             return state;

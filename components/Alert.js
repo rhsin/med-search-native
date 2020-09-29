@@ -20,8 +20,7 @@ function Alert() {
                     onPress: () => setVisible(false)
                 }
             ]}
-            icon="alert"
-        >
+            icon="alert">
             {error}
         </Banner>
     );

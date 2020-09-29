@@ -6,7 +6,8 @@ import {
     FETCH_FIRST_MED,
     FETCH_MEDS_FAILURE,
     SORT_MEDS,
-    FILTER_MEDS
+    FILTER_MEDS,
+    SHOW_ERROR
 } from '../components/redux/actions';
 
 const meds = [
@@ -54,5 +55,10 @@ describe('reducer', () => {
             .toEqual({meds: [
                 {id: 1, name: 'Acetamenophen', price: 150}
             ]});
+    });
+
+    test('handle SHOW_ERROR', () => {
+        expect(reducer({}, {type: SHOW_ERROR, error: error}))
+            .toEqual({error: error});
     });
 });
