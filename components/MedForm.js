@@ -7,14 +7,14 @@ import { fetchMeds, fetchFirstMed, sortMeds, filterMeds, getUser } from './redux
 import { Button, TextInput } from 'react-native-paper';
 import { Header } from 'react-native-elements';
 
-function MedForm() {
+function MedForm({ navigation }) {
     const [search, setSearch] = useState('');
 
     const dispatch = useDispatch();
     const user = useSelector(state => state.user);
     const loading = useSelector(state => state.loading);
 
-    const email = user ? ' - ' + user.email: ' - Guest';
+    const name = user ? ' ' + user.name: ' Guest';
 
     useEffect(()=> {
         dispatch(getUser());
@@ -23,12 +23,16 @@ function MedForm() {
     return (
         <View>
             <Header
-                leftComponent={{icon: 'menu', color: '#fff'}}
+                leftComponent={{icon: 'find-in-page', color: '#fff'}}
                 centerComponent={{
-                    text: 'MedSearch' + email,
+                    text: 'Welcome' + name,
                     style: {color: '#fff', fontSize: '1.2rem'}
                 }}
-                rightComponent={{icon: 'home', color: '#fff'}}
+                rightComponent={{
+                    icon: 'send',
+                    color: '#fff',
+                    onPress: () => navigation.navigate('UserMeds')
+                }}
             />
             <Alert />
 

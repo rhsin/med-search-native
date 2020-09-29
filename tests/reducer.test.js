@@ -14,7 +14,7 @@ import {
 const meds = [
     {id: 1, name: 'Acetamenophen', price: 150},
     {id: 2, name: 'Ibuprofen', price: 250}
-]
+];
 
 const user = {name: 'Ryan', email: 'ryan@test.com'};
 
