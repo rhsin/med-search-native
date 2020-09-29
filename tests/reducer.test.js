@@ -8,7 +8,8 @@ import {
     GET_USER,
     SORT_MEDS,
     FILTER_MEDS,
-    SHOW_ERROR
+    SHOW_ERROR,
+    RESET_ERROR
 } from '../components/redux/actions';
 
 const meds = [
@@ -68,5 +69,10 @@ describe('reducer', () => {
     test('handle SHOW_ERROR', () => {
         expect(reducer({}, {type: SHOW_ERROR, error: error}))
             .toEqual({error: error});
+    });
+
+    test('handle RESET_ERROR', () => {
+        expect(reducer({}, {type: RESET_ERROR}))
+            .toEqual({error: null});
     });
 });

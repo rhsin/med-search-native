@@ -9,7 +9,8 @@ import {
     GET_USER,
     SORT_MEDS,
     FILTER_MEDS,
-    SHOW_ERROR
+    SHOW_ERROR,
+    RESET_ERROR
 } from './actions';
 
 export const initialState = {
@@ -66,6 +67,11 @@ export function reducer(state = initialState, action) {
             return {
                 ...state,
                 error: action.error
+            };
+        case RESET_ERROR:
+            return {
+                ...state,
+                error: null
             };
         default:
             return state;

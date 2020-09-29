@@ -1,15 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { resetError } from './redux/actions';
 import { Banner } from 'react-native-paper';
 
 function Alert() {
     const [visible, setVisible] = useState(false);
 
+    const dispatch = useDispatch();
     const error = useSelector(state => state.error);
 
     useEffect(()=> {
-        error && setVisible(true);
+        error != null && setVisible(true);
     }, [error]);
+
+    const resetAlert = () => {
+        dispatch(resetError());
+        setVisible(false);
+    };
 
     return (
         <Banner
@@ -17,7 +24,7 @@ function Alert() {
             actions={[
                 {
                     label: 'Close',
-                    onPress: () => setVisible(false)
+                    onPress: () => resetAlert()
                 }
             ]}
             icon="alert">

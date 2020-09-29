@@ -8,6 +8,7 @@ export const GET_USER = 'GET_USER';
 export const SORT_MEDS = 'SORT_MEDS';
 export const FILTER_MEDS = 'FILTER_MEDS';
 export const SHOW_ERROR = 'SHOW_ERROR';
+export const RESET_ERROR = 'RESET_ERROR';
 
 const url = 'http://localhost:8000/';
 
@@ -57,3 +58,5 @@ export const sortMeds = () => ({type: SORT_MEDS});
 export const filterMeds = () => ({type: FILTER_MEDS});
 
 export const showError = (err) => ({type: SHOW_ERROR, error: err.message});
+
+export const resetError = () => ({type: RESET_ERROR});
