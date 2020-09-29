@@ -8,7 +8,7 @@ export default function App() {
   return (
     <Provider store={store}>
       <PaperProvider>
-        <MedForm user={{email: 'ryan@test.com'}} />
+        <MedForm />
       </PaperProvider>
     </Provider>
   );

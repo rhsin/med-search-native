@@ -6,6 +6,7 @@ import {
     FETCH_MEDS_SUCCESS,
     FETCH_FIRST_MED,
     FETCH_MEDS_FAILURE,
+    GET_USER,
     SORT_MEDS,
     FILTER_MEDS,
     SHOW_ERROR
@@ -13,6 +14,7 @@ import {
 
 export const initialState = {
     meds: [],
+    user: null,
     loading: false,
     error: null
 };
@@ -44,6 +46,11 @@ export function reducer(state = initialState, action) {
                 ...state,
                 error: action.error,
                 loading: false
+            };
+        case GET_USER:
+            return {
+                ...state,
+                user: action.user
             };
         case SORT_MEDS:
             return { 

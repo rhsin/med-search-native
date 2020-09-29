@@ -5,6 +5,7 @@ import {
     FETCH_MEDS_SUCCESS,
     FETCH_FIRST_MED,
     FETCH_MEDS_FAILURE,
+    GET_USER,
     SORT_MEDS,
     FILTER_MEDS,
     SHOW_ERROR
@@ -14,6 +15,8 @@ const meds = [
     {id: 1, name: 'Acetamenophen', price: 150},
     {id: 2, name: 'Ibuprofen', price: 250}
 ]
+
+const user = {name: 'Ryan', email: 'ryan@test.com'};
 
 const error = 'Not Authorized';
 
@@ -40,6 +43,11 @@ describe('reducer', () => {
     test('handle FETCH_MEDS_FAILURE', () => {
         expect(reducer({}, {type: FETCH_MEDS_FAILURE, error: error}))
             .toEqual({error: error, loading: false});
+    });
+
+    test('handle GET_USER', () => {
+        expect(reducer({}, {type: GET_USER, user: user}))
+            .toEqual({user: user});
     });
 
     test('handle SORT_MEDS', () => {

@@ -1,19 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Alert from './Alert';
 import MedTable from './MedTable';
 import { StyleSheet, View, ActivityIndicator } from 'react-native';
-import { fetchMeds, fetchFirstMed, sortMeds, filterMeds } from './redux/actions';
+import { fetchMeds, fetchFirstMed, sortMeds, filterMeds, getUser } from './redux/actions';
 import { Button, TextInput } from 'react-native-paper';
 import { Header } from 'react-native-elements';
 
-function MedForm({ user }) {
+function MedForm() {
     const [search, setSearch] = useState('');
 
     const dispatch = useDispatch();
+    const user = useSelector(state => state.user);
     const loading = useSelector(state => state.loading);
 
-    const email = user && ' - ' + user.email;
+    const email = user ? ' - ' + user.email: ' - Guest';
+
+    useEffect(()=> {
+        dispatch(getUser());
+    }, []);
 
     return (
         <View>

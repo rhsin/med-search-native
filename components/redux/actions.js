@@ -4,6 +4,7 @@ export const FETCH_MEDS_BEGIN = 'FETCH_MEDS_BEGIN';
 export const FETCH_MEDS_SUCCESS = 'FETCH_MEDS_SUCCESS';
 export const FETCH_FIRST_MED = 'FETCH_FIRST_MED';
 export const FETCH_MEDS_FAILURE = 'FETCH_MEDS_FAILURE';
+export const GET_USER = 'GET_USER';
 export const SORT_MEDS = 'SORT_MEDS';
 export const FILTER_MEDS = 'FILTER_MEDS';
 export const SHOW_ERROR = 'SHOW_ERROR';
@@ -37,6 +38,17 @@ export function fetchFirstMed(med) {
             type: FETCH_MEDS_FAILURE,
             error: err.message
         }));
+    };
+}
+
+export function getUser() {
+    return dispatch => {
+        axios.get(url + 'users')
+        .then(res => dispatch({
+            type: GET_USER,
+            user: res.data.data[0]
+        }))
+        .catch(err => console.log(err));
     };
 }
 
