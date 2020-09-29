@@ -1,8 +1,9 @@
 import axios from 'axios';
 
-export const FETCH_MEDS = 'FETCH_MEDS';
+export const FETCH_MEDS_BEGIN = 'FETCH_MEDS_BEGIN';
+export const FETCH_MEDS_SUCCESS = 'FETCH_MEDS_SUCCESS';
 export const FETCH_FIRST_MED = 'FETCH_FIRST_MED';
-export const FETCH_MEDS_ERROR = 'FETCH_MEDS_ERROR';
+export const FETCH_MEDS_FAILURE = 'FETCH_MEDS_FAILURE';
 export const SORT_MEDS = 'SORT_MEDS';
 export const FILTER_MEDS = 'FILTER_MEDS';
 
@@ -10,13 +11,14 @@ const url = 'http://localhost:8000/';
 
 export function fetchMeds(med) {
     return dispatch => {
+        dispatch({type: FETCH_MEDS_BEGIN});
         axios.get(url + 'search/' + med)
         .then(res => dispatch({
-            type: FETCH_MEDS,
+            type: FETCH_MEDS_SUCCESS,
             meds: res.data.data
         }))
         .catch(err => dispatch({
-            type: FETCH_MEDS_ERROR,
+            type: FETCH_MEDS_FAILURE,
             error: err.message
         }));
     };
@@ -24,13 +26,14 @@ export function fetchMeds(med) {
 
 export function fetchFirstMed(med) {
     return dispatch => {
+        dispatch({type: FETCH_MEDS_BEGIN});
         axios.get(url + 'first/' + med)
         .then(res => dispatch({
             type: FETCH_FIRST_MED,
             meds: [res.data.data]
         }))
         .catch(err => dispatch({
-            type: FETCH_MEDS_ERROR,
+            type: FETCH_MEDS_FAILURE,
             error: err.message
         }));
     };

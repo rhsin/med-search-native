@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { StyleSheet, View } from 'react-native';
+import Alert from './Alert';
+import { StyleSheet, View, ActivityIndicator } from 'react-native';
 import { fetchMeds, fetchFirstMed, sortMeds, filterMeds } from './redux/actions';
-import { Button, TextInput, DataTable } from 'react-native-paper';
-
+import { Button, TextInput, DataTable, Text } from 'react-native-paper';
+import { Header } from 'react-native-elements';
 
 function MedForm({ user }) {
     const [search, setSearch] = useState('');
@@ -11,34 +12,64 @@ function MedForm({ user }) {
 
     const dispatch = useDispatch();
     const meds = useSelector(state => state.meds);
-    const error = useSelector(state => state.error);
+    const loading = useSelector(state => state.loading);
 
+    const email = user && user.email;
     const pageLabel = `${page * 15 + 1}-${(page + 1) * 15} of ${meds.length}`;
 
     return (
-        <View style={styles}>
+        <View>
+            <Header
+                leftComponent={{icon: 'menu', color: '#fff'}}
+                centerComponent={{
+                    text: 'MedSearch',
+                    style: {color: '#fff', fontSize: '1.2rem'}
+                }}
+                rightComponent={{icon: 'home', color: '#fff'}}
+            />
+            <Alert />
+
             <Button
-                icon="database-search"
-                mode="contained"
+                icon='database-search'
+                mode='contained'
                 onPress={()=> dispatch(fetchMeds(search))}
             >
                 Search
             </Button>
 
             <TextInput
-                label="Search For Medication"
-                placeholder="Enter Medication"
+                label='Search For Medication'
+                placeholder='Enter Medication'
                 value={search}
                 onChangeText={text => setSearch(text)}
             />
-
+           
             <Button
-                icon="database-search"
-                mode="contained"
+                icon='magnify'
+                mode='contained'
                 onPress={()=> dispatch(fetchFirstMed(search))}    
             >
                 First
             </Button>
+
+            <Button
+                icon='sort'
+                mode='contained'
+                onPress={()=> dispatch(sortMeds())}    
+            >
+                Sort
+            </Button>
+
+            <Button
+                icon='filter-variant'
+                mode='contained'
+                onPress={()=> dispatch(filterMeds())}    
+            >
+                Filter
+            </Button>
+
+            {loading && <ActivityIndicator size='large' />}
+            <Text>Results: {meds.length}</Text>
 
             <DataTable>
                 <DataTable.Header>
@@ -72,20 +103,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
-    },
+    }
 });
     
-            // <div>MedForm</div>
-            // <div>{user && user.email}</div>
-            // <div>
-            //     <button onClick={()=> dispatch(sortMeds())}>
-            //         Sort Meds
-            //     </button>
-            //     <button onClick={()=> dispatch(filterMeds())}>
-            //         Filter Meds
-            //     </button>
-            // </div>
-            // <div>Results: {meds.length}</div>
-            // {error && <div>{error}</div>}
-
-
