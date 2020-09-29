@@ -15,7 +15,7 @@ function MedTable() {
     const pageLabel = `${page * 15 + 1}-${(page + 1) * 15} of ${meds.length}`;
 
     const saveMed = (id) => {
-        axios.put('http://localhost:8000/meds/' + id)
+        axios.put('http://localhost:8000/api/meds/' + id)
         .then(()=> setVisible(true))
         .catch(err => dispatch(showError(err)));
     };

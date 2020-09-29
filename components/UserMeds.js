@@ -4,7 +4,7 @@ import axios from 'axios';
 import Alert from './Alert';
 import { StyleSheet } from 'react-native';
 import { showError, getUser } from './redux/actions';
-import {  DataTable, IconButton, Banner, Chip } from 'react-native-paper';
+import { DataTable, IconButton, Banner, Chip } from 'react-native-paper';
 import { Header } from 'react-native-elements';
 
 function UserMeds() {
@@ -14,7 +14,7 @@ function UserMeds() {
     const dispatch = useDispatch();
     const user = useSelector(state => state.user);
 
-    const pageLabel = `${page * 15 + 1}-${(page + 1) * 15} of ${user.meds.length}`;
+    const pageLabel = user && `${page * 15 + 1}-${(page + 1) * 15} of ${user.meds.length}`;
     const name = user ? ' ' + user.name: ' Guest';
 
     useEffect(()=> {
@@ -22,7 +22,7 @@ function UserMeds() {
     }, [visible]);
 
     const removeMed = (id) => {
-        axios.delete('http://localhost:8000/meds/' + id)
+        axios.delete('http://localhost:8000/api/meds/' + id)
         .then(()=> setVisible(true))
         .catch(err => dispatch(showError(err)));
     };
@@ -38,7 +38,7 @@ function UserMeds() {
             />
 
             <Chip icon='view-headline'>
-                Your Saved Medications: {user.meds.length}
+                Your Saved Medications: {user && user.meds.length}
             </Chip>
 
             <Banner
@@ -61,7 +61,7 @@ function UserMeds() {
                     <DataTable.Title>Price</DataTable.Title>
                     <DataTable.Title>Save</DataTable.Title>
                 </DataTable.Header>
-                {user.meds.slice(page * 15, (page * 15) + 15).map(item => 
+                {user && user.meds.slice(page * 15, (page * 15) + 15).map(item => 
                     <DataTable.Row key={item.id}>
                         <DataTable.Cell>{item.name}</DataTable.Cell>
                         <DataTable.Cell>{item.package}</DataTable.Cell>
@@ -76,7 +76,7 @@ function UserMeds() {
                 )}
                 <DataTable.Pagination
                     page={page}
-                    numberOfPages={user.meds.length/15}
+                    numberOfPages={user && user.meds.length/15}
                     onPageChange={page => setPage(page)}
                     label={pageLabel}
                 />

@@ -10,7 +10,7 @@ export const FILTER_MEDS = 'FILTER_MEDS';
 export const SHOW_ERROR = 'SHOW_ERROR';
 export const RESET_ERROR = 'RESET_ERROR';
 
-const url = 'http://localhost:8000/';
+const url = 'http://localhost:8000/api/';
 
 export function fetchMeds(med) {
     return dispatch => {
