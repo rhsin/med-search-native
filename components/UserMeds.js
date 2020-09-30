@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import Alert from './Alert';
+import { headers } from '../config/headers';
 import { StyleSheet } from 'react-native';
 import { showError, getUser } from './redux/actions';
 import { DataTable, IconButton, Banner, Chip } from 'react-native-paper';
@@ -22,7 +23,7 @@ function UserMeds() {
     }, [visible]);
 
     const removeMed = (id) => {
-        axios.delete('http://localhost:8000/api/meds/' + id)
+        axios.delete('http://localhost:8000/api/meds/' + id, headers)
         .then(()=> setVisible(true))
         .catch(err => dispatch(showError(err)));
     };

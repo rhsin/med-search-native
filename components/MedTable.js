@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
+import { headers } from '../config/headers';
 import { StyleSheet } from 'react-native';
 import { showError } from './redux/actions';
-import {  DataTable, IconButton, Banner, Chip } from 'react-native-paper';
+import { DataTable, IconButton, Banner, Chip } from 'react-native-paper';
 
 function MedTable() {
     const [page, setPage] = useState(0);
@@ -15,7 +16,7 @@ function MedTable() {
     const pageLabel = `${page * 15 + 1}-${(page + 1) * 15} of ${meds.length}`;
 
     const saveMed = (id) => {
-        axios.put('http://localhost:8000/api/meds/' + id)
+        axios.put('http://localhost:8000/api/meds/' + id, null, headers)
         .then(()=> setVisible(true))
         .catch(err => dispatch(showError(err)));
     };

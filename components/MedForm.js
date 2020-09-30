@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import axios from 'axios';
 import Alert from './Alert';
 import MedTable from './MedTable';
 import { StyleSheet, View, ActivityIndicator } from 'react-native';
@@ -18,6 +19,7 @@ function MedForm({ navigation }) {
 
     useEffect(()=> {
         dispatch(getUser());
+        // axios.get('http://localhost:8000/api/test/token')
     }, []);
 
     return (
