@@ -2,7 +2,7 @@
 <table>
 <tr>
 <td>
-  A mobile app for searching & saving medication wholesale prices from Federal Supply contracts. This is another learning project to experiment with React-Native development for the firest time, using Laravel as a REST API. 
+  A mobile app for searching & saving medication wholesale prices from Federal Supply contracts. This is another learning project to experiment with React-Native development for the first time, using Laravel as a REST API. The app uses Stack Navigation to change screens, and React-Native-Paper for a component library. See Med-Search (REST API) for backend repository.
 </td>
 </tr>
 </table>
