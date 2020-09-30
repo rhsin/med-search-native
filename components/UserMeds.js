@@ -60,14 +60,14 @@ function UserMeds() {
                     <DataTable.Title>Name</DataTable.Title>
                     <DataTable.Title>Package</DataTable.Title>
                     <DataTable.Title>Price</DataTable.Title>
-                    <DataTable.Title>Save</DataTable.Title>
+                    <DataTable.Title numeric>Delete</DataTable.Title>
                 </DataTable.Header>
                 {user && user.meds.slice(page * 15, (page * 15) + 15).map(item => 
                     <DataTable.Row key={item.id}>
                         <DataTable.Cell>{item.name}</DataTable.Cell>
                         <DataTable.Cell>{item.package}</DataTable.Cell>
                         <DataTable.Cell>${item.price}</DataTable.Cell>
-                        <DataTable.Cell>
+                        <DataTable.Cell numeric>
                             <IconButton
                                 icon='delete'
                                 onPress={()=> removeMed(item.id)}

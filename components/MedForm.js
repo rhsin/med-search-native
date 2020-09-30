@@ -19,7 +19,7 @@ function MedForm({ navigation }) {
 
     useEffect(()=> {
         dispatch(getUser());
-        // axios.get('http://localhost:8000/api/test/token')
+        axios.get('http://localhost:8000/api/test/token')
     }, []);
 
     return (
@@ -85,12 +85,6 @@ function MedForm({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
     button: {
         margin: '.2rem'
     }
